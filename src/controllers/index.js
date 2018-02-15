@@ -1,5 +1,7 @@
-var authenticate = require('./authentication')
+var authentication = require('./authentication')
+var logout = require('./logout')
 
 module.exports = {
-	authenticate
+	authentication,
+	logout
 }
