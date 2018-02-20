@@ -1,5 +1,7 @@
 var mongoose = require('mongoose')
 var url = 'mongodb://admin2:admin2@ds235788.mlab.com:35788/adminpanel'
+//var url = "localhost:27017"
+
 
 function connectToDB(){
 	mongoose.connect(url, function(err, db){

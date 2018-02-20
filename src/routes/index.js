@@ -7,7 +7,7 @@ var services = require('../services/index')
 let router = express()
 
 router.use('/', controllers.authentication())
-
 router.use('/logout', controllers.logout())
+router.use('/submit', controllers.submit())
 
 module.exports = router

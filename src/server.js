@@ -15,7 +15,7 @@ connectToDB()
 
 app.set('view engine', 'jade')
 
-app.use(express.static('./public'))
+app.use(express.static('public'))
 app.use(require('express-session')({
     secret: 'keyboard cat',
     resave: false,

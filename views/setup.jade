@@ -1,5 +1,7 @@
 extends layout
 
+script(src='../public/setup.js')
+
 block content
   .container
     h1 Login Page************
@@ -8,8 +10,43 @@ block content
       p logged in as #{user.username}
       h1 ENTER SET UP STUFF HERE
 
+      a(href='/logout') logout
+
     if !user
-      form(role='form', action="/", method='post')
+      form(role='form', action="/submit", method='post')
         input(type='text', name='username', placeholder='Enter Username')
         input(type='text', name='password', placeholder='Password')
         button(type='submit') Submit
+
+
+
+
+    form(role='form', action='/submit', method='post')
+      input(type='text', name='app.apiVersion', placeholder='previous ApiVersion Number')
+      button(type='submit') submit to Update to previous apiVersion
+
+    form(role='form', action='/submit', method='post')
+      table(id="table")
+        - var currentObj = "" 
+        for item in settings
+          - var regexpResult = /(?:(?!\.).)*/.exec(item)[0]
+          if !(regexpResult === currentObj)
+            if !(currentObj === "")
+              tr
+                td(class="addField" id="#{currentObj}.extra")
+                  button(type='button') Add Field to #{currentObj} 
+            tr
+              th
+                "#{regexpResult}"
+            - currentObj = regexpResult
+          tr
+            td 
+              input(type='text', name='dummy', placeholder='#{item}' disabled)
+            td 
+              if item == 'app.isDebug' || item == 'app.showLogs'
+                input(type='text', name='#{item}', value='true')
+              else
+                input(type='text', name='#{item}', value='5')
+      button(type='button' class="addField" id="#{currentObj}") Add Field to #{currentObj}        
+      button(type='submit') Submit
+            
