@@ -17,7 +17,7 @@ function getExtras(settings, whatToUpdate){
 			if(!whatToUpdate[prefix+ ".extra"]){
 				whatToUpdate[prefix+ ".extra"] = {}
 			}
-			whatToUpdate[prefix+ ".extra"][newKey] = newValue
+			whatToUpdate[prefix + ".extra"][newKey] = newValue
 			//whatToUpdate[prefix].extra[newKey] = newValue
 		}
 	})

@@ -13,7 +13,9 @@ function stripSettingsSchema(settings, needArray){
 	if(needArray){
 		return Object.keys(filtered)
 	}
-	else return filtered
+	else{
+		filtered[]
+	}filtered
 }
 
 module.exports = stripSettingsSchema
