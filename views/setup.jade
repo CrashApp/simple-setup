@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .container
+    h1 Login Page************
+    br
+    if user
+      p logged in as #{user.username}
+      h1 ENTER SET UP STUFF HERE
+
+    if !user
+      form(role='form', action="/", method='post')
+        input(type='text', name='username', placeholder='Enter Username')
+        input(type='text', name='password', placeholder='Password')
+        button(type='submit') Submit

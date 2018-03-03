@@ -1,0 +1,16 @@
+extends layout
+
+script(src='../public/displayFeed.js')
+
+block content
+  .container
+   
+    if user
+      p Hello #{user.username}!
+      a(href='/logout') logout
+    if !user
+      h1 Login!
+      form(role='form', action="/", method='post')
+        input(type='text', name='username', placeholder='Enter Username')
+        input(type='text', name='password', placeholder='Password')
+        button(type='submit') Submit
