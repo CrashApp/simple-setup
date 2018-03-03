@@ -1,9 +1,11 @@
 extends layout
 
-script(src='../public/displayFeed.js')
+
 
 block content
   .container
+
+    button(type='button' class="addField" id="addField") Add Config Field     
    
     if user
       p Hello #{user.username}!

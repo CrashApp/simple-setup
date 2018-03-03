@@ -4,6 +4,8 @@ var models = require('../models/index')
 
 var Account = models.Account
 
+
+
 passport.use(new LocalStrategy(function(username, password, done){
 	console.log("username is " + username)
 	console.log("password is " + password)
