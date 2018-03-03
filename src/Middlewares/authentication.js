@@ -1,7 +1,6 @@
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var models = require('../models/index')
-
 var Account = models.Account
 
 passport.use(new LocalStrategy(function(username, password, done){
