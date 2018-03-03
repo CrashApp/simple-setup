@@ -8,7 +8,7 @@ function logout(){
 	api.get('/', function(req, res){
 	  console.log("Logging Out")
 	  req.logout()
-	  res.render('login', {logout: true})
+	  res.render('home', {logout: true})
 	})
 
 
