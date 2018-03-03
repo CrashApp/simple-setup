@@ -5,8 +5,11 @@ var passportMiddleware = require('../middlewares/authentication')
 var models = require('../models/index')
 var LocalStrategy = require('passport-local').Strategy
 var jobs = require('../jobs/index')
+var Objects = require('../models/Objects')
 
-var settings = jobs.stripSettingsSchema(models.Setting.schema.paths, true)
+var settings = jobs.stripSettingsSchema(Objects.settings, false)
+var settings = jobs.convertToArrOfObjects(settings)
+console.log(settings)
 
 function auth(){
 // var Account = models.Account()
