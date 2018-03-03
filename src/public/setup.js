@@ -11,6 +11,11 @@ $(document).ready(function() {
 		counter++
 	})
 
+	$('.addCategory').click(function(){
+		htmlString = '<table><tr><td><button class="addField" id="authentication.extra" type="button">Add Field to authentication</button></td></tr></table>'
+		$(this).closest('input').replace(htmlString)
+	})
 
+	$()
 })
 	

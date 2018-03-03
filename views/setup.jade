@@ -23,22 +23,29 @@ block content
 
     form(role='form', action='/submit', method='post')
       input(type='text', name='app.apiVersion', placeholder='previous ApiVersion Number')
+      br
       button(type='submit') submit to Update to previous apiVersion
+
+    br
+    br
 
     form(role='form', action='/submit', method='post')
       table(id="table")
         - var currentObj = "" 
-        for item in settings
+        for item, index in settings
           - var regexpResult = /(?:(?!\.).)*/.exec(item)[0]
-          if !(regexpResult === currentObj)
-            if !(currentObj === "")
+          - var last = settings.length - 1
+
+          if (regexpResult !== currentObj)
+            if (currentObj !== "" && index <= last)
               tr
-                td(class="addField" id="#{currentObj}.extra")
-                  button(type='button') Add Field to #{currentObj} 
+                td
+                  button(type='button' class="addField" id="#{currentObj}.extra") Add Field to #{currentObj}
             tr
               th
-                "#{regexpResult}"
-            - currentObj = regexpResult
+                '#{regexpResult}'
+
+          - currentObj = regexpResult
           tr
             td 
               input(type='text', name='dummy', placeholder='#{item}' disabled)
@@ -47,6 +54,17 @@ block content
                 input(type='text', name='#{item}', value='true')
               else
                 input(type='text', name='#{item}', value='5')
-      button(type='button' class="addField" id="#{currentObj}") Add Field to #{currentObj}        
+          if (index === last)
+            tr
+                td
+                  button(type='button' class="addField" id="#{currentObj}.extra") Add Field to #{currentObj} 
+
+      br
+      br
+
+      input(type='text', name='newCat', placeholder='Enter New Category Name')
+      button(type='button' class="addCategory" id="") Add New Category
+      br
+      br        
       button(type='submit') Submit
             

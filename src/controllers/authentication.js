@@ -18,9 +18,9 @@ function auth(){
 
 	api.get('/', function(req, res){
 		if(req.user){
-			res.render('home', {user: req.user})
+			res.render('home.jade', {user: req.user})
 		}
-		else res.render('home')
+		else res.render('home.jade')
 	})
 
 
@@ -28,7 +28,7 @@ function auth(){
 		passportMiddleware.authenticate('local'), 
 		function(req, res){
 			console.log(settings)
-			res.render('setup', {user: req.user, settings: settings})
+			res.render('setup.jade', {user: req.user, settings: settings})
 		}
 	)
 
