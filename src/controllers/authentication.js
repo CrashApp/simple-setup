@@ -1,4 +1,3 @@
-
 var express = require('express')
 var passportMiddleware = require('../middlewares/authentication')
 var models = require('../models/index')
