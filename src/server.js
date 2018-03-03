@@ -14,6 +14,7 @@ var exphbs = require('express-handlebars')
 
 connectToDB()
 
+
 app.set('view engine', 'jade')
 // app.engine('handlebars',
 // 	exphbs({
@@ -33,15 +34,16 @@ app.use(require('express-session')({
 app.use(passport.initialize())
 app.use(passport.session())
 
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 app.use('/',express.static(path.join(__dirname, '/public')));
 //app.use('/', express.static(process.cwd() + '/src/public'));
 
-
 //mongoose.connect('mongodb://admin2:admin2@ds131258.mlab.com:31258/emails')
 
 app.use('/', router)
+
 
 app.listen(config.app.port, function () {
   console.log('Node.js listening ...');
