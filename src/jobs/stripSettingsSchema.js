@@ -4,6 +4,7 @@
 function stripSettingsSchema(settings, needArray){
 	var filtered = {}
 	var keys = Object.keys(settings)
+	unique 
 	keys.forEach(function(item){
 			if(item !== "dummy" && item[0] !== "_" && !item.includes("extra")){
 				filtered[item] = settings[item]
