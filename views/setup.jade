@@ -30,34 +30,27 @@ block content
     br
 
     form(role='form', action='/submit', method='post')
-      table(id="table")
-        - var currentObj = "" 
-        for item, index in settings
-          - var regexpResult = /(?:(?!\.).)*/.exec(item)[0]
-          - var last = settings.length - 1
-
-          if (regexpResult !== currentObj)
-            if (currentObj !== "" && index <= last)
+      - var headers = Object.keys(settings)
+      for heading in headers
+        table(id="#{heading}")
+          tr
+            td
+              th #{heading}
+          for propertyObj in settings[heading]
+            - var property = Object.keys(propertyObj)[0]
+            - var constraint = propertyObj[property]
+            if property !== "extra"
               tr
                 td
-                  button(type='button' class="addField" id="#{currentObj}.extra") Add Field to #{currentObj}
-            tr
-              th
-                '#{regexpResult}'
-
-          - currentObj = regexpResult
-          tr
-            td 
-              input(type='text', name='dummy', placeholder='#{item}' disabled)
-            td 
-              if item == 'app.isDebug' || item == 'app.showLogs'
-                input(type='text', name='#{item}', value='true')
-              else
-                input(type='text', name='#{item}', value='5')
-          if (index === last)
-            tr
+                  input(type='text', name='dummy', placeholder='#{property}' disabled)
                 td
-                  button(type='button' class="addField" id="#{currentObj}.extra") Add Field to #{currentObj} 
+                  if property == 'isDebug' || property == 'showLogs'
+                    input(type='text', name='#{heading}.#{property}', value='true')
+                  else
+                    input(type='text', name='#{heading}.#{property}', value='5')
+          tr
+            td
+              button(type='button' class="addField" id="#{heading}.extra") Add Field to #{currentObj} 
 
       br
       br

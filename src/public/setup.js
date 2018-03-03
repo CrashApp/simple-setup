@@ -6,7 +6,7 @@ $(document).ready(function() {
 	
 	$('.addField').click(function(){
 		var id = $(this).attr('id')
-		htmlString = '<tr><td> <input name="' + id + counter + '" type="text" placeholder="NAME OF PROPERTY"></td> <td> <input type="text" name="' + id + counter + '" placeholder="edit me"></td></tr>'
+		htmlString = '<tr><td> <input name="' + id + counter + '" type="text" placeholder="NAME OF PROPERTY"></td> <td> <input type="text" name="' + id + counter + '" placeholder="VALUE"></td></tr>'
 		$(this).closest('tr').before(htmlString)
 		counter++
 	})
