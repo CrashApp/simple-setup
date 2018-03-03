@@ -10,13 +10,21 @@ var router = require('./routes/index')
 var mongoose = require('mongoose')
 var passport = require('./middlewares/authentication')
 var connectToDB = require('./dbConnect')
+var exphbs = require('express-handlebars')
 
 connectToDB()
 
 
 app.set('view engine', 'jade')
+// app.engine('handlebars',
+// 	exphbs({
+// 		layoutsDir: '../views/layouts',
+// 		defaultLayout: 'main'
+// 		//partialsDir: './src/partials'
+// 	}))
+// app.set('view engine', 'handlebars')
 
-app.use(express.static('./public'))
+app.use(express.static('public'))
 app.use(require('express-session')({
     secret: 'keyboard cat',
     resave: false,

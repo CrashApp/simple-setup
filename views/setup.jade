@@ -1,15 +1,53 @@
 extends layout
 
+script(src='../public/setup.js')
+
 block content
   .container
-    h1 Login Page************
-    br
-    if user
-      p logged in as #{user.username}
-      h1 ENTER SET UP STUFF HERE
-
     if !user
-      form(role='form', action="/", method='post')
-        input(type='text', name='username', placeholder='Enter Username')
-        input(type='text', name='password', placeholder='Password')
+      h1 Unauthorized. Please login
+      a(href='/') login page
+    if user
+      h1 logged in as #{user.username}
+
+      a(href='/logout') logout
+
+      form(role='form', action='/submit', method='post')
+        input(type='text', name='app.apiVersion', placeholder='previous ApiVersion Number')
+        br
+        button(type='submit') submit to Update to previous apiVersion
+
+      br
+      br
+
+      form(role='form', action='/submit', method='post')
+        - var headers = Object.keys(settings)
+        for heading in headers
+          table(id="#{heading}")
+            tr
+              th #{heading}
+            for propertyObj in settings[heading]
+              - var property = Object.keys(propertyObj)[0]
+              - var constraint = propertyObj[property]
+              if property !== "extra"
+                tr
+                  td
+                    input(type='text', name='dummy', placeholder='#{property}' disabled)
+                  td
+                    if property == 'isDebug' || property == 'showLogs'
+                      input(type='text', name='#{heading}.#{property}', value='true')
+                    else
+                      input(type='text', name='#{heading}.#{property}', value='5')
+            tr
+              td
+                button(type='button' class="addField" id="#{heading}.extra") Add Field 
+
+        br
+        br
+
+        input(type='text', name='newCat', placeholder='Enter New Category Name')
+        button(type='button' class="addCategory" id="") Add New Category
+        br
+        br        
         button(type='submit') Submit
+            

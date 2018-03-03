@@ -1,0 +1,21 @@
+extends layout
+
+
+
+block content
+	h1 Hi, #{user.username}
+	a(href='/logout') logout
+
+	br
+	a(href='/submit') Recreate the Setup
+	br
+	
+
+	h2 Changes successfully saved to the database!
+
+	- var keys = Object.keys(data)
+	for key in keys
+		h5 #{key}:
+		p #{data[key]}
+		br
+

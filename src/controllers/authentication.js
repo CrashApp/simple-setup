@@ -1,5 +1,4 @@
 var express = require('express')
-
 var passportMiddleware = require('../middlewares/authentication')
 var models = require('../models/index')
 var LocalStrategy = require('passport-local').Strategy
@@ -12,33 +11,24 @@ function auth(){
 // passport.serializeUser(Account.serializeUser())
 // passport.deserializeUser(Account.deserializeUser())
 
-var api = express.Router()
+	var api = express.Router()
 
-api.get('/', function(req, res){
-	if(req.user){
-		res.render('home', {user: req.user})
-	}
-	else res.render('home')
-})
+	api.get('/', function(req, res){
+		if(req.user){
+			res.render('home.jade', {user: req.user})
+		}
+		else res.render('home.jade')
+	})
 
-// api.post('/',
-// 	passportMiddleware.authenticate('local', {
-// 		successRedirect: '/',
-// 		failureRedirect: '/'
-// 	})
-// )
+	api.post('/',
+		passportMiddleware.authenticate('local'), 
+		function(req, res){
+			res.redirect('/submit')
+			//res.render('setup.jade', {user: req.user, settings: settings})
+		}
+	)
 
-api.post('/',
-	passportMiddleware.authenticate('local'), 
-	function(req, res){
-		res.render('setup', {user: req.user})
-	}
-)
-
-
-
-return api
-
+	return api
 }
 
 module.exports = auth

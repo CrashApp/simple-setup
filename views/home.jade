@@ -1,12 +1,15 @@
 extends layout
 
-script(src='../public/displayFeed.js')
+
 
 block content
-  .container
+  .container  
    
+    if logout
+      p SUCCESSFULLY LOGGED OUT
     if user
       p Hello #{user.username}!
+      a(href='/submit')
       a(href='/logout') logout
     if !user
       h1 Login!
